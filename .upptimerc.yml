@@ -2,44 +2,131 @@
 owner: Hikarai
 repo: status-page
 
+# MONITORING SETTINGS
+checkInterval: 5  # Check every 5 minutes (GitHub Actions minimum)
+delay: 3000       # 3-second delay between checking different pages (prevents rate limiting)
+timezone: "Asia/Karachi"
+maxResponseTime: 5000  # 5 seconds (realistic for e-commerce - longer = degraded performance)
+
+# SITES TO MONITOR (Critical Shopify Pages)
 sites:
+  # Main Store
   - name: All Shopia Store
     url: https://www.allshopia.com
     icon: https://www.allshopia.com/favicon.ico
-    description: "The primary online store"
+    description: "Main store homepage"
     expectedStatusCodes: [200]
+    assignees: [Hikarai]  # Assign issues to you for quick response
+  
+  # Critical Shopping Journey Pages (Customer Funnel)
+  - name: Product Pages
+    url: https://www.allshopia.com/products  # Replace with an actual product URL
+    description: "Product listing and detail pages"
+    maxResponseTime: 3000  # Even faster for product browsing
+    assignees: [Hikarai]
+    
+  - name: Shopping Cart
+    url: https://www.allshopia.com/cart
+    description: "Customer shopping cart"
+    maxResponseTime: 3000
+    assignees: [Hikarai]
+  
+  - name: Checkout Process
+    url: https://www.allshopia.com/checkout
+    description: "Checkout and payment gateway"
+    maxResponseTime: 4000  # Slightly longer for checkout (payment processing)
+    assignees: [Hikarai]
+    __dangerous__body_down_if_text_missing: '"Checkout"'  # Custom check for page content
+  
+  # Content & Support Pages
+  - name: Customer Blog
+    url: https://www.allshopia.com/blogs/news
+    description: "Store blog and announcements"
+    assignees: [Hikarai]
+  
+  - name: Customer Support
+    url: https://www.allshopia.com/pages/contact  # Replace with your actual contact page
+    description: "Contact and support pages"
+    assignees: [Hikarai]
 
-# Monitoring Settings
-checkInterval: 5
-maxResponseTime: 10000
-timezone: "Asia/Karachi"
+# GLOBAL PERFORMANCE MONITORING (Using Globalping)
+# Uncomment the lines below and add `type: globalping` to specific sites to check from different regions
+# Example for global customers:
+# - name: All Shopia Store (EU Check)
+#   url: https://www.allshopia.com
+#   type: globalping
+#   location: europe
+#   description: "European customer access"
 
-# Status Page Branding & Setup
+# STATUS WEBSITE CUSTOMIZATION
 status-website:
+  baseUrl: /status-page  # Required for GitHub Pages CSS to load correctly
   cname: status.allshopia.com
   name: All Shopia Status
-  logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/logo_800x800_0fc25045-3739-4812-a74d-a8186edf1954.png?v=1764260129
-  introTitle: "All Shopia System Status"
-  introMessage: "Welcome to our live status page. Here you can see the real-time availability and performance of our online store. This page is updated automatically every 5 minutes."
+  logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/Footer_logo_inverted_59d9f3fd-50aa-4d1f-b758-204f9b4a5323.png?v=1759328591
+  
+  # Customer-Focused Intro Text
+  introTitle: "All Shopia Service Status"
+  introMessage: |
+    Welcome to our real-time service status page. We continuously monitor all critical parts of our online store to ensure a smooth shopping experience.
+    
+    **What we monitor:**
+    - Store homepage and product browsing
+    - Shopping cart and checkout process  
+    - Blog and support pages
+    
+    You can subscribe to status updates or check our incident history below.
+  
+  # Customer-Friendly Navigation
   navbar:
     - title: Status Home
       href: /
-    - title: Visit Our Store
+    - title: Shop Now
       href: https://www.allshopia.com
-    - title: Report History
+    - title: Incident History
       href: /history
-    - title: GitHub
-      href: https://github.com/Hikarai/status-page
+    - title: Response Graphs
+      href: /graphs
+  
+  # Custom favicon matching your store
+  favicon: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
+  
+  # Customize the "Powered by Upptime" footer text
+  # i18n:
+  #   footer: "All Shopia status monitoring. [View technical details on GitHub](https://github.com/Hikarai/status-page)."
 
-# THEME CONFIGURATION (Fixes Styling)
+# THEME CUSTOMIZATION (Professional E-commerce Look)
 theme:
-  primaryColor: "#1F2937"        # Dark Gray (Primary text/headers)
-  secondaryColor: "#3B82F6"      # Blue (Accent, links, buttons)
-  backgroundColor: "#F9FAFB"     # Light Gray (Page background)
-  customCSS: |
-    /* Optional: Add any extra custom CSS rules here */
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  primaryColor: "#1F2937"        # Dark Gray (Professional, easy to read)
+  secondaryColor: "#3B82F6"      # Blue (Matches common CTA buttons)
+  backgroundColor: "#FFFFFF"     # White (Clean, matches most Shopify themes)
+  # Alternative: Use built-in theme
+  # theme: light
 
-# Notifications (Example: Email - Requires GH Secrets)
+# INCIDENT MANAGEMENT
+assignees: [Hikarai]  # Auto-assign all downtime issues to you
+skipDeleteIssues: false  # Keep issues <15 min for complete history (set to true to delete them)
+
+# NOTIFICATIONS (Configure based on your setup)
 notifications:
   - type: email
+  # - type: sms  # Uncomment when SMS is configured for urgent alerts
+
+# WORKFLOW SCHEDULE (Optimized for Shopify)
+workflowSchedule:
+  uptime: "*/5 * * * *"      # Every 5 minutes (minimum)
+  responseTime: "0 */6 * * *" # Every 6 hours instead of daily
+  graphs: "0 2 * * *"        # Daily at 2 AM (low traffic time)
+  staticSite: "0 3 * * *"     # Daily at 3 AM
+  summary: "0 4 * * *"        # Daily at 4 AM
+
+# ADVANCED: CUSTOM CSS FOR SHOPIFY BRANDING
+# Uncomment to add custom CSS matching your store's design
+# customCSS: |
+#   :root {
+#     --primary-color: #YOUR_BRAND_COLOR;
+#     --font-family: 'Your Shopify font', -apple-system, sans-serif;
+#   }
+#   .nav {
+#     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+#   }
