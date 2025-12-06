@@ -58,7 +58,7 @@ status-website:
   baseUrl: /status-page  # Required for GitHub Pages CSS to load correctly
   cname: status.allshopia.com
   name: All Shopia Status
-  logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/Footer_logo_inverted_59d9f3fd-50aa-4d1f-b758-204f9b4a5323.png?v=1759328591
+  logoUrl: https://placehold.co/600x400
   
   # Customer-Focused Intro Text
   introTitle: "All Shopia Service Status"
