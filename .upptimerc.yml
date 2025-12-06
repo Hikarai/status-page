@@ -13,39 +13,34 @@ sites:
   # Main Store
   - name: All Shopia Store
     url: https://www.allshopia.com
-    icon: https://www.allshopia.com/favicon.ico
+    icon: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
     description: "Main store homepage"
     expectedStatusCodes: [200]
     assignees: [Hikarai]  # Assign issues to you for quick response
   
   # Critical Shopping Journey Pages (Customer Funnel)
   - name: Product Pages
-    url: https://www.allshopia.com/products  # Replace with an actual product URL
+    url: https://allshopia.com/collections/all  # Replace with an actual product URL
     description: "Product listing and detail pages"
     maxResponseTime: 3000  # Even faster for product browsing
     assignees: [Hikarai]
     
   - name: Shopping Cart
-    url: https://www.allshopia.com/cart
+    url: https://allshopia.com/cart
     description: "Customer shopping cart"
     maxResponseTime: 3000
     assignees: [Hikarai]
   
   - name: Checkout Process
-    url: https://www.allshopia.com/checkout
+    url: https://allshopia.com/checkouts
     description: "Checkout and payment gateway"
     maxResponseTime: 4000  # Slightly longer for checkout (payment processing)
     assignees: [Hikarai]
     __dangerous__body_down_if_text_missing: '"Checkout"'  # Custom check for page content
   
   # Content & Support Pages
-  - name: Customer Blog
-    url: https://www.allshopia.com/blogs/news
-    description: "Store blog and announcements"
-    assignees: [Hikarai]
-  
   - name: Customer Support
-    url: https://www.allshopia.com/pages/contact  # Replace with your actual contact page
+    url: https://allshopia.com/pages/contact-us  # Replace with your actual contact page
     description: "Contact and support pages"
     assignees: [Hikarai]
 
