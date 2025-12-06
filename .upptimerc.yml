@@ -1,25 +1,35 @@
-# Change these first
-owner: Hikarai # Your GitHub organization or username, where this repository lives
-repo: Status-Page # The name of this repository
+# All Shopia Upptime Configuration
+owner: Hikarai
+repo: status-page # Use the EXACT name of your GitHub repository
 
 sites:
-  - name: Google
+  - name: All Shopia Store
     url: https://www.allshopia.com
+    description: "The primary online store"
 
+# Monitoring Settings
+checkInterval: 5 # Check every 5 minutes
+maxResponseTime: 10000 # Alert if slower than 10 seconds
+timezone: "Asia/Karachi" # Set to Pakistan time
+
+# Status Page Branding & Setup
 status-website:
-  # Add your custom domain name, or remove the `cname` line if you don't have a domain
-  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  cname: status.allshopia.com
-  # baseUrl: /your-repo-name
+  cname: status.allshopia.com # Your custom domain
+  name: All Shopia Status
   logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/logo_800x800_0fc25045-3739-4812-a74d-a8186edf1954.png?v=1764260129
-  name: All Shopia
-  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
-  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  introTitle: "All Shopia System Status"
+  introMessage: "Welcome to our official status page. Here you can see the real-time performance and availability of our online store and services. This page is updated automatically."
   navbar:
-    - title: Status
+    - title: Status Home
       href: /
-    - title: GitHub
-      href: https://github.com/$OWNER/$REPO
+    - title: Visit Our Store
+      href: https://www.allshopia.com
+    - title: View on GitHub
+      href: https://github.com/Hikarai/status-page
 
-# Upptime also supports notifications, assigning issues, and more
-# See https://upptime.js.org/docs/configuration
+# Page Theme (Clean & Professional)
+theme:
+  primaryColor: "#1F2937" # Dark gray
+  secondaryColor: "#3B82F6" # Blue accent
+  backgroundColor: "#F9FAFB" # Light background
+  darkMode: false
