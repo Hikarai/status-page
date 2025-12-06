@@ -2,102 +2,21 @@
 owner: Hikarai
 repo: status-page
 
-# MONITORING SETTINGS
-checkInterval: 5  # Check every 5 minutes (GitHub Actions minimum)
-delay: 3000       # 3-second delay between checking different pages (prevents rate limiting)
-timezone: "Asia/Karachi"
-maxResponseTime: 5000  # 5 seconds (realistic for e-commerce - longer = degraded performance)
-
-# SITES TO MONITOR (Critical Shopify Pages)
 sites:
-  # Main Store
-  - name: All Shopia Store
+  - name: AllShopia Home
     url: https://www.allshopia.com
-    icon: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
-    description: "Main store homepage"
-    expectedStatusCodes: [200]
-    assignees: [Hikarai]  # Assign issues to you for quick response
-  
-  # Critical Shopping Journey Pages (Customer Funnel)
-  - name: Product Pages
-    url: https://allshopia.com/collections/all
-    description: "Product listing and detail pages"
-    maxResponseTime: 3000  # Even faster for product browsing
-    assignees: [Hikarai]
-    
+    # Optional: You can add a custom icon for each site. For example:
+    # icon: https://www.allshopia.com/favicon.ico
+  - name: Product Collection
+    url: https://www.allshopia.com/collections/all
   - name: Shopping Cart
-    url: https://allshopia.com/cart
-    description: "Customer shopping cart"
-    maxResponseTime: 3000
-    assignees: [Hikarai]
-  
-  - name: Checkout Process
-    url: https://allshopia.com/checkout
-    description: "Checkout and payment gateway"
-    maxResponseTime: 4000  # Slightly longer for checkout (payment processing)
-    assignees: [Hikarai]
-    # __dangerous__body_down_if_text_missing: '"Checkout"'  # Optional: Use with caution
-  
-  # Content & Support Pages
-  - name: Customer Support
-    url: https://allshopia.com/pages/contact-us
-    description: "Contact and support pages"
-    assignees: [Hikarai]
+    url: https://www.allshopia.com/cart
 
-# STATUS WEBSITE CUSTOMIZATION (Single, merged section)
+# Status website settings (CRITICAL: baseUrl fixes CSS loading)
 status-website:
-  # CRITICAL: This fixes broken CSS on GitHub Pages
-  baseUrl: /status-page
-  cname: status.allshopia.com
+  baseUrl: /status-page # Required for GitHub Pages
+  cname: status.allshopia.com # Your custom domain
   name: All Shopia Status
-  # Replace placeholder with your actual logo URL
-  logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/logo_800x800_0fc25045-3739-4812-a74d-a8186edf1954.png?v=1764260129
-  
-  # Customer-Focused Intro Text
-  introTitle: "All Shopia Service Status"
-  introMessage: |
-    Welcome to our real-time service status page. We continuously monitor all critical parts of our online store to ensure a smooth shopping experience.
-    
-    **What we monitor:**
-    - Store homepage and product browsing
-    - Shopping cart and checkout process  
-    - Contact and support pages
-    
-    You can subscribe to status updates or check our incident history below.
-  
-  # Customer-Friendly Navigation
-  navbar:
-    - title: Status Home
-      href: /
-    - title: Shop Now
-      href: https://www.allshopia.com
-    - title: Incident History
-      href: /history
-    - title: Response Graphs
-      href: /graphs
-  
-  # Custom favicon matching your store
+  # Using your provided URL for both logo and favicon
+  logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
   favicon: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
-
-  # Theme Configuration (Now correctly nested inside status-website)
-  theme:
-    primaryColor: "#1F2937"        # Dark Gray (Professional, easy to read)
-    secondaryColor: "#3B82F6"      # Blue (Matches common CTA buttons)
-    backgroundColor: "#FFFFFF"     # White (Clean, matches most Shopify themes)
-
-# INCIDENT MANAGEMENT
-assignees: [Hikarai]  # Auto-assign all downtime issues to you
-skipDeleteIssues: false  # Keep issues <15 min for complete history (set to true to delete them)
-
-# NOTIFICATIONS (Configure based on your setup)
-notifications:
-  - type: email
-  # - type: sms  # Uncomment when SMS is configured for urgent alerts
-
-# WORKFLOW SCHEDULE (Optimized for Shopify)
-workflowSchedule:
-  uptime: "*/5 * * * *"      # Every 5 minutes (minimum)
-  responseTime: "0 */6 * * *" # Every 6 hours instead of daily
-  graphs: "0 2 * * *"        # Daily at 2 AM (low traffic time)
-  staticSite: "0 3 * * *"     # Daily at 3 AM
-  summary: "0 4 * * *"        # Daily at 4 AM
