@@ -1,22 +1,36 @@
-# All Shopia Upptime Configuration
-owner: Hikarai
-repo: status-page
+# Change these first
+owner: Hikarai # Your GitHub organization or username, where this repository lives
+repo: status-page # The name of this repository
 
 sites:
-  - name: AllShopia Home
-    url: https://www.allshopia.com
-    # Optional: You can add a custom icon for each site. For example:
-    # icon: https://www.allshopia.com/favicon.ico
-  - name: Product Collection
-    url: https://www.allshopia.com/collections/all
-  - name: Shopping Cart
-    url: https://www.allshopia.com/cart
+  - name: Google
+    url: https://www.google.com
+  - name: Wikipedia
+    url: https://en.wikipedia.org
+  - name: Hacker News
+    url: https://news.ycombinator.com
+  - name: Test Broken Site
+    url: https://thissitedoesnotexist.koj.co
+  - name: IPv6 test
+    url: forwardemail.net
+    port: 80
+    check: "tcp-ping"
+    ipv6: true
 
-# Status website settings (CRITICAL: baseUrl fixes CSS loading)
 status-website:
-  baseUrl: /status-page # Required for GitHub Pages
-  cname: status.allshopia.com # Your custom domain
-  name: All Shopia Status
-  # Using your provided URL for both logo and favicon
-  logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
-  favicon: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
+  # Add your custom domain name, or remove the `cname` line if you don't have a domain
+  # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
+  cname: demo.upptime.js.org
+  # baseUrl: /your-repo-name
+  logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
+  name: Upptime
+  introTitle: "**Upptime** is the open-source uptime monitor and status page, powered entirely by GitHub."
+  introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
+  navbar:
+    - title: Status
+      href: /
+    - title: GitHub
+      href: https://github.com/$OWNER/$REPO
+
+# Upptime also supports notifications, assigning issues, and more
+# See https://upptime.js.org/docs/configuration
