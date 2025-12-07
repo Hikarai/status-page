@@ -30,7 +30,7 @@ status-website:
   logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
   name: All Shopia Status
   introTitle: "**All Shopia** Service Status"
-  introMessage: This is the real-time status page for our Shopify store, monitoring the availability of our key shopping pages.
+  introMessage: This is the real-time status page for Store, monitoring the availability of our key shopping pages.
   navbar:
     - title: Status
       href: /
