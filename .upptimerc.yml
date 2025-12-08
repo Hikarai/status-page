@@ -26,11 +26,11 @@ status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain
   # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
   cname: status.allshopia.com
-  # baseUrl: /status-page  # Keep this commented if using custom domain above
+  baseUrl: /status-page  # UNCOMMENTED: Required for assets to load correctly
   logoUrl: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
   name: All Shopia Status
   introTitle: "**All Shopia** Service Status"
-  introMessage: This is the real-time status page for Store, monitoring the availability of our key shopping pages.
+  introMessage: Welcome to the All Shopia Status Page. We proactively monitor the health and performance of our core storefront pages to ensure a seamless shopping experience for our customers.
   navbar:
     - title: Status
       href: /
@@ -39,6 +39,15 @@ status-website:
     - title: GitHub
       href: https://github.com/Hikarai/status-page
   favicon: https://cdn.shopify.com/s/files/1/0947/3117/4253/files/cropped_circle_logo.png?v=1759408066
+  # Custom CSS to fix mobile graph sizing
+  customCSS: |
+    /* Make graphs responsive on smaller screens */
+    @media screen and (max-width: 768px) {
+      .graph img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
 
 # Workflow Schedule
 # Keep in mind that a scheduled GitHub Action cannot run faster than every 5 minutes.
